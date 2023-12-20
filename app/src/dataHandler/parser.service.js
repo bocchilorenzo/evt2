@@ -17,6 +17,7 @@ angular.module('evtviewer.dataHandler')
 		var parser = {};
 		var idx = 0;
 		var svgs = config.visCollSvg;
+		var previousElement = null;
 		// TODO: create module provider and add default configuration
 		// var defAttributes = ['n', 'n', 'n'];
 		var defPageElement = 'pb',
@@ -197,7 +198,7 @@ angular.module('evtviewer.dataHandler')
 					}
 				} else {
 					if (!parsedData.getEncodingDetail('usesLineBreaks') && tagName === 'l') {
-						newElement = parser.parseLine(doc, element, options);
+						newElement = parser.parseLine(doc, element, previousElement, options);
 					} else if (tagName === 'note' && skip.indexOf('<evtNote>') < 0) {
 						newElement = parser.parseNote(element);
 					} else if (tagName === 'date' && (!element.childNodes || element.childNodes.length <= 0)) { //TEMP => TODO: create new directive
@@ -309,6 +310,11 @@ angular.module('evtviewer.dataHandler')
 					}
 				}
 			}
+
+			if (tagName === 'l'){
+				previousElement = newElement;
+			}
+
 			if (skipped || element.nodeType === 3 || (newElement.innerHTML && newElement.innerHTML.replace(/\s/g, '') !== '')
 				|| (newElement.className && (newElement.className.indexOf('depaAnchor') >= 0 || newElement.className.indexOf('depaContent') >= 0))) {
 				return newElement;
@@ -661,7 +667,7 @@ angular.module('evtviewer.dataHandler')
 			var n = 0;
 			while (n < lines.length) {
 				var lineNode = lines[n],
-					newElement = parser.parseLine(docDOM, lineNode, {});
+					newElement = parser.parseLine(docDOM, lineNode, null, {});
 				lineNode.parentNode.replaceChild(newElement, lineNode);
 			}
 		};
@@ -676,12 +682,27 @@ angular.module('evtviewer.dataHandler')
 		 * indicating some specific properties of the line and line number.
 		 *
 		 * @param {element} lineNode XML element to be parsed
+		 * 
+		 * @param {element} previousElement XML element representing the previous line
+		 * 
+		 * @param {Object} options object indicating some specifig options
 		 *
 		 * @returns {element} <code>div</code> representing the parsed line
 		 *
 		 * @author CDP
 		 */
-		parser.parseLine = function (doc, lineNode, options) {
+		parser.parseLine = function (doc, lineNode, previousElement, options) {
+			function getPadding(string1) {
+				let canvas = document.createElement('canvas');
+				let ctx = canvas.getContext('2d');
+	
+				ctx.font = '18px Junicode, Times, serif'; // Font size and family
+	
+				let width1 = ctx.measureText(string1).width;
+	
+				return width1
+			}
+
 			var newElement = document.createElement('div');
 			newElement.className = lineNode.tagName + ' l-block';
 			for (var i = 0; i < lineNode.attributes.length; i++) {
@@ -697,6 +718,9 @@ angular.module('evtviewer.dataHandler')
 				   parser.parseXMLElement(doc, childElement, options)
 				);
 			}
+
+			let areLineNumbersPresent = parsedData.getEncodingDetail('lineNums');
+
 			var lineNum = lineNode.getAttribute('n');
 			if (lineNum && lineNum !== '') {
 				var lineNumElem = document.createElement('span');
@@ -706,11 +730,19 @@ angular.module('evtviewer.dataHandler')
 
 				var parsedElement = parser.parseXMLElement(doc, newElement, options);
 				newElement.innerHTML = lineNumElem.outerHTML + '<span class="lineContent">' + parsedElement.outerHTML + '</span>';
-				//newElement.insertBefore(lineNumElem, newElement.childNodes[0]);
-			} else if (parsedData.getEncodingDetail('lineNums')) {
+			} else if (areLineNumbersPresent) {
 				newElement.className += ' l-indent';
 				var parsedElement = parser.parseXMLElement(doc, newElement, options);
 				newElement.innerHTML = '<span class="lineContent">' + parsedElement.outerHTML + '</span>';
+			}
+
+			if (lineNode.attributes && lineNode.getAttribute('part') && lineNode.getAttribute('part') === 'F') {
+				if(previousElement != null){
+					//newElement.innerHTML = '&nbsp;'.repeat(previousElement.textContent.length) + newElement.innerHTML;
+					let padding = getPadding(previousElement.textContent, newElement.textContent);
+					newElement.style.paddingLeft = padding + 'px';
+				}
+				//newElement.className += areLineNumbersPresent ? ' l-indent-part' : ' l-indent';
 			}
 
 			return newElement;
