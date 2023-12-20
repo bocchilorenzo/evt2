@@ -255,7 +255,7 @@ angular.module('evtviewer.interface')
                      }
 
                       var currentDocFirstLoad = parsedData.getDocument(state.currentDoc);
-                      if (currentDocFirstLoad !== undefined){
+                      if (currentDocFirstLoad !== undefined) {
 
                         // Parse critical entries
                           if (parsedData.getEncodingDetail('variantEncodingLocation') === 'internal') {
@@ -1329,7 +1329,7 @@ angular.module('evtviewer.interface')
                 mainInterface.updateState('currentWits', witIds);
             }
 
-            if ( witPageIds !== {}) {
+            if ( Object.keys(witPageIds).length !== 0) {
                 mainInterface.updateState('currentWitsPages', witPageIds);
             }
 
