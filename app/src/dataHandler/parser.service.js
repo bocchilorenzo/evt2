@@ -690,7 +690,13 @@ angular.module('evtviewer.dataHandler')
 					newElement.setAttribute('data-' + attrib.name.replace(':', '-'), attrib.value);
 				}
 			}
-			newElement.innerHTML = lineNode.innerHTML;
+			
+			for (var j = 0; j < lineNode.childNodes.length; j++) {
+				var childElement = lineNode.childNodes[j].cloneNode(true);
+				newElement.appendChild(
+				   parser.parseXMLElement(doc, childElement, options)
+				);
+			}
 			var lineNum = lineNode.getAttribute('n');
 			if (lineNum && lineNum !== '') {
 				var lineNumElem = document.createElement('span');
