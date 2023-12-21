@@ -727,13 +727,10 @@ angular.module('evtviewer.dataHandler')
 				lineNumElem.className = 'lineN';
 				lineNumElem.textContent = lineNum;
 				newElement.className += ' l-hasLineN';
-
-				var parsedElement = parser.parseXMLElement(doc, newElement, options);
-				newElement.innerHTML = lineNumElem.outerHTML + '<span class="lineContent">' + parsedElement.outerHTML + '</span>';
+				newElement.innerHTML = lineNumElem.outerHTML + '<span class="lineContent l-indent">' + newElement.outerHTML + '</span>';
 			} else if (areLineNumbersPresent) {
 				newElement.className += ' l-indent';
-				var parsedElement = parser.parseXMLElement(doc, newElement, options);
-				newElement.innerHTML = '<span class="lineContent">' + parsedElement.outerHTML + '</span>';
+				newElement.innerHTML = '<span class="lineContent">' + newElement.outerHTML + '</span>';
 			}
 
 			if (lineNode.attributes && lineNode.getAttribute('part') && lineNode.getAttribute('part') === 'F') {
