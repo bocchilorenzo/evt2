@@ -27,7 +27,26 @@ angular.module('evtviewer.dataHandler')
 		contentDef: '<person>',
 		contentForLabelDef: '<persName>',
 		type: 'person'
-	},{
+	},
+	{
+		listDef: '<listClassic>',
+		contentDef: '<classic>',
+		contentForLabelDef: '<classicName>',
+		type: 'classic'
+	},
+	{
+		listDef: '<listMyth>',
+		contentDef: '<myth>',
+		contentForLabelDef: '<mythName>',
+		type: 'myth'
+	},
+	/* {
+		listDef: '<listBibl>',
+		contentDef: '<bibl>',
+		contentForLabelDef: '<biblName>',
+		type: 'bibliography'
+	}, */
+	{
 		listDef: '<listOrg>',
 		contentDef: '<org>',
 		contentForLabelDef: '<orgName>',

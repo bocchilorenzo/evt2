@@ -116,6 +116,8 @@
 		"OCCURRENCE": "Fol. {{pageLabel}} ({{docLabel}})",
 		"ORG": "Lista delle organizzazioni",
 		"PERSON": "Lista delle persone",
+		"CLASSIC": "Lista dei classici",
+		"MYTH": "Lista dei miti",
 		"PLACE": "Lista dei luoghi",
 		"RELATION": "Lista delle relazioni",
 		"RELATION_ACTIVE": "Attivo",

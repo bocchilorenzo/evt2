@@ -314,6 +314,9 @@ $named-entities-border-color : rgb(125, 125, 125);
     // Nested Lists
     .listplace .place,
     .listperson .person,
+    .listclassic .classic,
+    .listmyth .myth,
+    //.listbibl .bibl,
     .listorg .org,
     .list .item {
         display: list-item;
@@ -323,6 +326,15 @@ $named-entities-border-color : rgb(125, 125, 125);
 
 $personColor: #FFF0F1;
 $personColor-darker: #ffcdd2;
+
+$classicColor: #d4d7fd;
+$classicColor-darker: #b3b4ff;
+
+$mythColor: #fffff0;
+$mythColor-darker: #fffccd;
+
+/* $biblColor: #fff0ff;
+$biblColor-darker: #ffcdfd; */
 
 $placeColor: #EEF7EF;
 $placeColor-darker: #c8e6c9;
@@ -392,6 +404,22 @@ $orgColor-darker: #ffb74d;
         @include namedEntityColors($personColor, $personColor-darker);
     }
 
+    &-classic,
+    &-class,
+    &-classicName {
+        @include namedEntityColors($classicColor, $classicColor-darker);
+    }
+
+    &-myth,
+    &-mythName {
+        @include namedEntityColors($mythColor, $mythColor-darker);
+    }
+
+    /* &-bibl,
+    &-biblName {
+        @include namedEntityColors($biblColor, $biblColor-darker);
+    } */
+
     &-place,
     &-placeName {
         @include namedEntityColors($placeColor, $placeColor-darker);
@@ -426,6 +454,18 @@ $orgColor-darker: #ffb74d;
 [data-list-type=person] {
     @include listColors($personColor-darker);
 }
+
+[data-list-type=classic] {
+    @include listColors($classicColor-darker);
+}
+
+[data-list-type=myth] {
+    @include listColors($mythColor-darker);
+}
+
+/* [data-list-type=bibliography] {
+    @include listColors($biblColor-darker);
+} */
 
 [data-list-type=place] {
     @include listColors($placeColor-darker);
@@ -464,6 +504,44 @@ $orgColor-darker: #ffb74d;
             border-bottom-color: $personColor;
         }
     }
+
+    &-classic,
+    &-class,
+    &-classicName {
+        &:hover {
+            background-color: $classicColor;
+        }
+
+        &.active {
+            background-color: $classicColor;
+            border-bottom-color: $classicColor;
+        }
+    }
+
+    &-myth,
+    &-mythName {
+        &:hover {
+            background-color: $mythColor;
+        }
+
+        &.active {
+            background-color: $mythColor;
+            border-bottom-color: $mythColor;
+        }
+    }
+
+    /* &-bibl,
+    &-bibliography,
+    &-biblName {
+        &:hover {
+            background-color: $biblColor;
+        }
+
+        &.active {
+            background-color: $biblColor;
+            border-bottom-color: $biblColor;
+        }
+    } */
 
     &-place,
     &-placeName {
@@ -548,6 +626,55 @@ $orgColor-darker: #ffb74d;
     }
 }
 
+.classic-active,
+.class-active,
+.classicName-active {
+    .namedEntityRef {
+
+        &-classic,
+        &-class,
+        &-classicName {
+            background-color: $classicColor-darker;
+
+            &:hover:not(.active) {
+                background-color: $classicColor;
+            }
+        }
+    }
+}
+
+.myth-active,
+.mythName-active {
+    .namedEntityRef {
+
+        &-myth,
+        &-mythName {
+            background-color: $mythColor-darker;
+
+            &:hover:not(.active) {
+                background-color: $mythColor;
+            }
+        }
+    }
+}
+
+/* .bibl-active,
+.bibliography-active,
+.biblName-active {
+    .namedEntityRef {
+
+        &-bibl,
+        &-bibliography,
+        &-biblName {
+            background-color: $biblColor-darker;
+
+            &:hover:not(.active) {
+                background-color: $biblColor;
+            }
+        }
+    }
+} */
+
 .place-active,
 .placeName-active {
     .namedEntityRef {
@@ -585,6 +712,29 @@ $orgColor-darker: #ffb74d;
         color: $personColor-darker;
     }
 }
+
+[data-value="classic"],
+[data-value="class"],
+[data-value="classicName"] {
+    .option-icon-label {
+        color: $classicColor-darker;
+    }
+}
+
+[data-value="myth"],
+[data-value="mythName"] {
+    .option-icon-label {
+        color: $mythColor-darker;
+    }
+}
+
+/* [data-value="bibl"],
+[data-value="bibliography"],
+[data-value="biblName"] {
+    .option-icon-label {
+        color: $biblColor-darker;
+    }
+} */
 
 [data-value="place"],
 [data-value="placeName"] {
