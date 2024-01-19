@@ -108,6 +108,7 @@
 		"ENTITY_TYPE_ORG": "Organization name",
 		"ENTITY_TYPE_PERSON": "Person name",
 		"ENTITY_TYPE_CLASSICNAME": "Classic name",
+		"ENTITY_TYPE_MYTHNAME": "Myth name",
 		"ENTITY_TYPE_PLACE": "Place name",
 		"ENTITY_TYPE_RELATION": "Relation name",
 		"GENERIC": "Generic List",
