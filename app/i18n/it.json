@@ -108,6 +108,7 @@
 		"ENTITY_TYPE_": "Nome",
 		"ENTITY_TYPE_ORG": "Nome di organizzazione",
 		"ENTITY_TYPE_PERSON": "Nome di persona",
+		"ENTITY_TYPE_CLASSICNAME": "Nome di classico",
 		"ENTITY_TYPE_PLACE": "Nome di luogo",
 		"ENTITY_TYPE_RELATION": "Nome di relazione",
 		"GENERIC": "Lista generica",
