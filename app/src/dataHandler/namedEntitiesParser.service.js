@@ -47,6 +47,12 @@ angular.module('evtviewer.dataHandler')
 		type: 'bible'
 	},
 	{
+		listDef: '<listMotive>',
+		contentDef: '<motive>',
+		contentForLabelDef: '<motiveName>',
+		type: 'motive'
+	},
+	{
 		listDef: '<listOrg>',
 		contentDef: '<org>',
 		contentForLabelDef: '<orgName>',

@@ -625,6 +625,10 @@ angular.module('evtviewer.dataHandler')
 			case 'bibleName':
 				icon = 'fa-address-book';
 				break;
+			case 'motive':
+			case 'motiveName':
+				icon = 'fa-tag';
+				break;
             case 'org':
             case 'orgName':
                 icon = 'fa-users';

@@ -163,6 +163,10 @@ $named-entities-border-color : rgb(125, 125, 125);
                 // Nested Lists
                 .place,
                 .person,
+                .classic,
+                .myth,
+                .bible,
+                .motive,
                 .org,
                 .item {
                     display: list-item;
@@ -317,6 +321,7 @@ $named-entities-border-color : rgb(125, 125, 125);
     .listclassic .classic,
     .listmyth .myth,
     .listbible .bible,
+    .listMotive .motive,
     .listorg .org,
     .list .item {
         display: list-item;
@@ -335,6 +340,9 @@ $mythColor-darker: #fffccd;
 
 $bibleColor: #fff0ff;
 $bibleColor-darker: #ffcdfd;
+
+$motiveColor: #c1f8ff;
+$motiveColor-darker: #91f2ff;
 
 $placeColor: #EEF7EF;
 $placeColor-darker: #c8e6c9;
@@ -420,6 +428,11 @@ $orgColor-darker: #ffb74d;
         @include namedEntityColors($bibleColor, $bibleColor-darker);
     }
 
+    &-motive,
+    &-motiveName {
+        @include namedEntityColors($motiveColor, $motiveColor-darker);
+    }
+
     &-place,
     &-placeName {
         @include namedEntityColors($placeColor, $placeColor-darker);
@@ -465,6 +478,10 @@ $orgColor-darker: #ffb74d;
 
 [data-list-type=bible] {
     @include listColors($bibleColor-darker);
+}
+
+[data-list-type=motive] {
+    @include listColors($motiveColor-darker);
 }
 
 [data-list-type=place] {
@@ -539,6 +556,18 @@ $orgColor-darker: #ffb74d;
         &.active {
             background-color: $bibleColor;
             border-bottom-color: $bibleColor;
+        }
+    }
+
+    &-motive,
+    &-motiveName {
+        &:hover {
+            background-color: $motiveColor;
+        }
+
+        &.active {
+            background-color: $motiveColor;
+            border-bottom-color: $motiveColor;
         }
     }
 
@@ -672,6 +701,21 @@ $orgColor-darker: #ffb74d;
     }
 }
 
+.motive-active,
+.motiveName-active {
+    .namedEntityRef {
+
+        &-motive,
+        &-motiveName {
+            background-color: $motiveColor-darker;
+
+            &:hover:not(.active) {
+                background-color: $motiveColor;
+            }
+        }
+    }
+}
+
 .place-active,
 .placeName-active {
     .namedEntityRef {
@@ -729,6 +773,13 @@ $orgColor-darker: #ffb74d;
 [data-value="bibleName"] {
     .option-icon-label {
         color: $bibleColor-darker;
+    }
+}
+
+[data-value="motive"],
+[data-value="motiveName"] {
+    .option-icon-label {
+        color: $motiveColor-darker;
     }
 }
 
