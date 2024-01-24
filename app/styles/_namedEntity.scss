@@ -316,7 +316,7 @@ $named-entities-border-color : rgb(125, 125, 125);
     .listperson .person,
     .listclassic .classic,
     .listmyth .myth,
-    //.listbibl .bibl,
+    .listbible .bible,
     .listorg .org,
     .list .item {
         display: list-item;
@@ -333,8 +333,8 @@ $classicColor-darker: #b3b4ff;
 $mythColor: #fffff0;
 $mythColor-darker: #fffccd;
 
-/* $biblColor: #fff0ff;
-$biblColor-darker: #ffcdfd; */
+$bibleColor: #fff0ff;
+$bibleColor-darker: #ffcdfd;
 
 $placeColor: #EEF7EF;
 $placeColor-darker: #c8e6c9;
@@ -415,10 +415,10 @@ $orgColor-darker: #ffb74d;
         @include namedEntityColors($mythColor, $mythColor-darker);
     }
 
-    /* &-bibl,
-    &-biblName {
-        @include namedEntityColors($biblColor, $biblColor-darker);
-    } */
+    &-bible,
+    &-bibleName {
+        @include namedEntityColors($bibleColor, $bibleColor-darker);
+    }
 
     &-place,
     &-placeName {
@@ -463,9 +463,9 @@ $orgColor-darker: #ffb74d;
     @include listColors($mythColor-darker);
 }
 
-/* [data-list-type=bibliography] {
-    @include listColors($biblColor-darker);
-} */
+[data-list-type=bible] {
+    @include listColors($bibleColor-darker);
+}
 
 [data-list-type=place] {
     @include listColors($placeColor-darker);
@@ -530,18 +530,17 @@ $orgColor-darker: #ffb74d;
         }
     }
 
-    /* &-bibl,
-    &-bibliography,
-    &-biblName {
+    &-bible,
+    &-bibleName {
         &:hover {
-            background-color: $biblColor;
+            background-color: $bibleColor;
         }
 
         &.active {
-            background-color: $biblColor;
-            border-bottom-color: $biblColor;
+            background-color: $bibleColor;
+            border-bottom-color: $bibleColor;
         }
-    } */
+    }
 
     &-place,
     &-placeName {
@@ -658,22 +657,20 @@ $orgColor-darker: #ffb74d;
     }
 }
 
-/* .bibl-active,
-.bibliography-active,
-.biblName-active {
+.bible-active,
+.bibleName-active {
     .namedEntityRef {
 
-        &-bibl,
-        &-bibliography,
-        &-biblName {
-            background-color: $biblColor-darker;
+        &-bible,
+        &-bibleName {
+            background-color: $bibleColor-darker;
 
             &:hover:not(.active) {
-                background-color: $biblColor;
+                background-color: $bibleColor;
             }
         }
     }
-} */
+}
 
 .place-active,
 .placeName-active {
@@ -728,13 +725,12 @@ $orgColor-darker: #ffb74d;
     }
 }
 
-/* [data-value="bibl"],
-[data-value="bibliography"],
-[data-value="biblName"] {
+[data-value="bible"],
+[data-value="bibleName"] {
     .option-icon-label {
-        color: $biblColor-darker;
+        color: $bibleColor-darker;
     }
-} */
+}
 
 [data-value="place"],
 [data-value="placeName"] {

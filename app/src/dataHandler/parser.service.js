@@ -23,8 +23,8 @@ angular.module('evtviewer.dataHandler')
 		var defPageElement = 'pb',
 			defLineBreak = '<lb>',
 			defLine = '<l>',
-			possibleNamedEntitiesDef = '<placeName>, <geogName>, <persName>, <orgName>, <classicName>, <mythName>', //, <biblName>
-			possibleNamedEntitiesListsDef = '<listPlace>, <listPerson>, <listOrg>, <list>, <listClassic>, <listMyth>', //, <listBibl>
+			possibleNamedEntitiesDef = '<placeName>, <geogName>, <persName>, <orgName>, <classicName>, <bibleName>, <mythName>',
+			possibleNamedEntitiesListsDef = '<listPlace>, <listPerson>, <listOrg>, <list>, <listClassic>, <listBible>, <listMyth>',
 			defImageList = 'image';
 		var viscollDefs = {
 			leaf: 'leaf',
@@ -220,7 +220,7 @@ angular.module('evtviewer.dataHandler')
 					} else if (config.namedEntitiesSelector &&
 						possibleNamedEntitiesDef.toLowerCase().indexOf('<' + tagName + '>') >= 0 &&
 						element.getAttribute('ref') !== undefined) { //TODO: Rivedere
-						newElement = parser.parseNamedEntity(doc, element, skip);
+						newElement = parser.parseNamedEntity(doc, element, skip, options.short);
 					} else {
 						if (element.tagName === 'div') {
 							newElement = document.createElement('div');
@@ -250,7 +250,31 @@ angular.module('evtviewer.dataHandler')
 						if (element.childNodes) {
 							for (var j = 0; j < element.childNodes.length; j++) {
 								var childElement = element.childNodes[j].cloneNode(true);
-								newElement.appendChild(parser.parseXMLElement(doc, childElement, options));
+								let childDepth = 0;
+								let toAppend = [];
+								let childToAnalyze = element.childNodes[j].cloneNode(true);
+
+								options.short = false;
+								if (childToAnalyze.firstChild){
+									while(childToAnalyze.firstChild.nodeType !== 3){
+										childDepth++;
+										toAppend.push(childToAnalyze.firstChild);
+										childToAnalyze = childToAnalyze.firstChild;
+									}
+									if(childDepth > 1){
+										newElement.appendChild(parser.parseXMLElement(doc, childToAnalyze.firstChild, options));
+										options.short = true;
+										for(let i = 0; i < childDepth; i++){
+											newElement.appendChild(parser.parseXMLElement(doc, toAppend[i], options));
+										}
+									}
+									else{
+										newElement.appendChild(parser.parseXMLElement(doc, childElement, options));
+									}
+								}
+								else{
+									newElement.appendChild(parser.parseXMLElement(doc, childElement, options));
+								}
 							}
 						} else {
 							newElement.innerHTML = element.innerHTML + ' ';
@@ -623,12 +647,13 @@ angular.module('evtviewer.dataHandler')
 		 * @param {element} doc XML element to be parsed
 		 * @param {element} entityNode node to be transformed
 		 * @param {string} skip names of sub elements to skip from transformation
+		 * @param {boolean} short whether to show the short version of the named entity or not
 		 *
 		 * @returns {element} <code>evt-named-entity-ref</code> generated
 		 *
 		 * @author CDP
 		 */
-		parser.parseNamedEntity = function (doc, entityNode, skip) {
+		parser.parseNamedEntity = function (doc, entityNode, skip, short=false) {
 			var entityElem = document.createElement('evt-named-entity-ref'),
 				entityRef = entityNode.getAttribute('ref'),
 				entityId = entityRef ? entityRef.replace('#', '') : undefined;
@@ -647,6 +672,13 @@ angular.module('evtviewer.dataHandler')
 					skip: skip
 				});
 				entityElem.appendChild(parsedXmlElem);
+			}
+			if(short){
+				//create a sup element with the first letter of the entity type
+				let sup = document.createElement('sup');
+				sup.textContent = entityElem.attributes["data-entity-type"].value[0].toUpperCase();
+				sup.style = "font-size: 0.8em;"
+				entityElem.innerHTML = sup.outerHTML;
 			}
 			return entityElem;
 		};

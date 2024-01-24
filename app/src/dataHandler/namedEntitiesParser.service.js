@@ -40,12 +40,12 @@ angular.module('evtviewer.dataHandler')
 		contentForLabelDef: '<mythName>',
 		type: 'myth'
 	},
-	/* {
-		listDef: '<listBibl>',
-		contentDef: '<bibl>',
-		contentForLabelDef: '<biblName>',
-		type: 'bibliography'
-	}, */
+	{
+		listDef: '<listBible>',
+		contentDef: '<bible>',
+		contentForLabelDef: '<bibleName>',
+		type: 'bible'
+	},
 	{
 		listDef: '<listOrg>',
 		contentDef: '<org>',

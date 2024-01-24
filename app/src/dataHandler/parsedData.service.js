@@ -615,17 +615,16 @@ angular.module('evtviewer.dataHandler')
 			case 'classic':
 			case 'class':
 			case 'classicName':
-				icon = 'fa-university';
+				icon = 'fa-graduation-cap';
 				break;
 			case 'myth':
 			case 'mythName':
 				icon = 'fa-bolt';
 				break;
-			/* case 'bibl':
-			case 'bibliography':
-			case 'biblName':
-				icon = 'fa-graduation-cap';
-				break; */
+			case 'bible':
+			case 'bibleName':
+				icon = 'fa-address-book';
+				break;
             case 'org':
             case 'orgName':
                 icon = 'fa-users';
