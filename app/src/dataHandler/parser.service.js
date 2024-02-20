@@ -256,13 +256,18 @@ angular.module('evtviewer.dataHandler')
 
 								options.short = false;
 								if (childToAnalyze.firstChild){
-									while(childToAnalyze.firstChild.nodeType !== 3){
+									while(childToAnalyze.firstChild && childToAnalyze.firstChild.nodeType !== 3){
 										childDepth++;
 										toAppend.push(childToAnalyze.firstChild);
 										childToAnalyze = childToAnalyze.firstChild;
 									}
 									if(childDepth > 1){
-										newElement.appendChild(parser.parseXMLElement(doc, childToAnalyze.firstChild, options));
+										if (childToAnalyze.firstChild){
+											newElement.appendChild(parser.parseXMLElement(doc, childToAnalyze.firstChild, options));
+										}
+										else{
+											newElement.appendChild(parser.parseXMLElement(doc, childToAnalyze, options));
+										}
 										options.short = true;
 										for(let i = 0; i < childDepth; i++){
 											newElement.appendChild(parser.parseXMLElement(doc, toAppend[i], options));
