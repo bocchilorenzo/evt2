@@ -685,6 +685,9 @@ pre {
 }
 
 /* Critic and Comment Notes (notes with numeric and alphabetical exponent) */
+.reading_exponent {
+    background-color: transparent!important;
+}
 .evt_note {
     color: #fff;
 }

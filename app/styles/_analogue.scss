@@ -1,6 +1,9 @@
 .analogue {
     padding: 0;
     cursor: pointer;
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
 
     i.iconbis-evt_analogue {
         font-size: 0.8em;
@@ -31,4 +34,14 @@
             border-bottom: 1px solid $base-color-dark;
         }        
     }
+}
+
+.analogue__text {
+    display: flex;
+    flex-direction: column;
+    padding: 3px 0;
+}
+
+.analogue-indent {
+    margin-left: 42px;
 }

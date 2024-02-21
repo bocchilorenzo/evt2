@@ -176,6 +176,13 @@ angular.module('evtviewer.dataHandler')
 				(skip.toLowerCase().indexOf('<' + element.tagName.toLowerCase() + '>') >= 0
 					|| element.className.indexOf('depaAnchor') >= 0
 					|| element.className.indexOf('depaContent') >= 0)) {
+				if (element.tagName === "evt-analogue"){
+					element.className += ' l-block analogue-indent';
+					// find a more elegant way to do the following
+					element.innerHTML = element.innerHTML.replace(/l-indent/g, '');
+					element.innerHTML = element.innerHTML.replace(/<evt-named-entity-ref/g, ' <evt-named-entity-ref');
+					element.innerHTML = element.innerHTML.replace(/<span/g, ' <span');
+				}
 				newElement = element;
 				skipped = true;
 			} else if (element.tagName !== undefined && exclude !== undefined && exclude.toLowerCase().indexOf('<' + element.tagName.toLowerCase() + '>') >= 0) {
@@ -250,6 +257,11 @@ angular.module('evtviewer.dataHandler')
 						if (element.childNodes) {
 							for (var j = 0; j < element.childNodes.length; j++) {
 								var childElement = element.childNodes[j].cloneNode(true);
+								if(childElement.tagName == "evt-analogue"){
+									// analogues do not need to be iterated over, otherwise the formatting breaks
+									newElement.appendChild(parser.parseXMLElement(doc, childElement, options));
+									continue;
+								}
 								let childDepth = 0;
 								let toAppend = [];
 								let childToAnalyze = element.childNodes[j].cloneNode(true);
@@ -670,10 +682,9 @@ angular.module('evtviewer.dataHandler')
 
 			var entityContent = '';
 			for (var i = 0; i < entityNode.childNodes.length; i++) {
-				var childElement = entityNode.childNodes[i].cloneNode(true),
-					parsedXmlElem;
+				var childElement = entityNode.childNodes[i].cloneNode(true);
 
-				parsedXmlElem = parser.parseXMLElement(doc, childElement, {
+				let parsedXmlElem = parser.parseXMLElement(doc, childElement, {
 					skip: skip
 				});
 				entityElem.appendChild(parsedXmlElem);

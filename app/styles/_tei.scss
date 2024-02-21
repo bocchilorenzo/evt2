@@ -109,6 +109,8 @@ div.div {
 
 	&-block {
 		display: block;
+		width: auto;
+		max-width: fit-content;
 	}
 
 	&[data-rend='indent']:not(.l-hasLineN),

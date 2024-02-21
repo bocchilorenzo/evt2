@@ -7,7 +7,7 @@ If you need to know *how to use* an EVT Release please read `USER_README.md` ins
 ## Dev Environment Prerequisites
 
 You need to preinstall NodeJS (see official documentation). 
-Everything works properly with versions up to v10.19.0 (you can use `nvm` in order to have multiple versions of node installed in your device),
+Everything works properly with versions up to v14.21.3 (you can use `nvm` in order to have multiple versions of node installed in your device),
 
 ## Starting the application
 1. Clone the repository from github
