@@ -40,6 +40,18 @@ angular.module('evtviewer.versionApparatusEntry')
     };
     /**
      * @ngdoc method
+     * @name evtviewer.versionApparatusEntry.controller:versionApparatusEntryCtrl#isAppAvailable
+     * @methodOf evtviewer.versionApparatusEntry.controller:versionApparatusEntryCtrl
+     *
+     * @description
+     * Check if tool to toggle apparatus visibility is available.
+     * @returns {boolean} whether the tool is available or not
+     */
+    this.isAppAvailable = function(){
+        return config.toolToggleApparatus;
+    };
+    /**
+     * @ngdoc method
      * @name evtviewer.versionApparatusEntry.controller:versionApparatusEntryCtrl#isPinAvailable
      * @methodOf evtviewer.versionApparatusEntry.controller:versionApparatusEntryCtrl
      *

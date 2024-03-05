@@ -19,7 +19,7 @@
  * '*bookmark*', '*changeViewMode*', '*colorLegend*', '*closeDialog*', '*closePinned*', '*download-xml*',
  * '*fontSizeDecrease*', '*fontSizeTools*', '*front*', '*heatmap*', '*itl*', '*mainMenu*', '*openGlobalDialogInfo*', 
  * '*openGlobalDialogWitnesses*', '*openGlobalDialogLists*', '*pin*', '*removeWit*', '*searchInEdition*', '*searchInWit*', 
- * '*share*', '*toggleInfoWit*', '*toggleFilterApp*', '*togglePinned*', '*witList*', '*toggleInfoSrc*', '*addVer*', 
+ * '*share*', '*toggleInfoWit*', '*toggleFilterApp*', '*togglePinned*', '*toggleApparatus*', '*witList*', '*toggleInfoSrc*', '*addVer*', 
  * '*removeVer*', '*cropText*', '*nextPage*'.
  * @param {string=} value value associated to button
  * @param {string=} iconPos position of icon ('left', 'right'). Default 'right'

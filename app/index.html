@@ -142,6 +142,13 @@
 								'left': isPinnedAppBoardOpened() && isApparatusBoxOpen(),
 								'half-left': !isPinnedAppBoardOpened() && isApparatusBoxOpen()}">
 				</button-switch>
+				<button-switch title="BUTTONS.SHOW_APPARATUS" data-label="" data-icon="app"
+					data-type="toggleApparatus" ng-if="::isToolAvailable('toolToggleApparatus')" class="toggleApparatus_btn"
+					ng-class="{'centered': !isPinnedAppBoardOpened() && !isApparatusBoxOpen(),
+								'half-centered': isPinnedAppBoardOpened() && !isApparatusBoxOpen(),
+								'left': isPinnedAppBoardOpened() && isApparatusBoxOpen(),
+								'half-left': !isPinnedAppBoardOpened() && isApparatusBoxOpen()}">
+				</button-switch>
 
 				<box data-type="pinnedBoard" ng-if="!isLoading() && isPinnedAppBoardOpened()"
 					ng-class="{ 'pin-centered': isPinnedAppBoardOpened() && isApparatusBoxOpen()}">

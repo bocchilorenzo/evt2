@@ -192,9 +192,9 @@ button-switch {
 }
 
 // Temporary
-.togglePinned_btn {
+.togglePinned_btn,
+.toggleApparatus_btn {
     position: absolute;
-    top: 54px;
     z-index: 20;
     left: 75%;
     transform: none !important;
@@ -233,4 +233,10 @@ button-switch {
       margin: 8px 0;
       font-size: 1.4em;
    }
+}
+.togglePinned_btn{
+    top: 54px;
+}
+.toggleApparatus_btn{
+    top: 100px;
 }

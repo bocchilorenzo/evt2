@@ -247,6 +247,9 @@ angular.module('evtviewer.buttonSwitch')
 						case 'pin':
 							evtIcon = 'icon-evt_pin-alt-on';
 							break;
+						case 'app':
+							evtIcon = 'icon-evt_bubble';
+							break;
 						case 'pin-off':
 							evtIcon = 'icon-evt_pin-off';
 							break;
@@ -365,6 +368,7 @@ angular.module('evtviewer.buttonSwitch')
 				 * 		<li>'*toggleInfoWit*': open/close info Top Box on witness box; </li>
 				 * 		<li>'*toggleFilterApp*': open/close filters box on scope parent box;</li>
 				 * 		<li>'*togglePinned*': toggle pinned element;</li>
+				 * 		<li>'*toggleApparatus*': toggle apparatus visibility;</li>
 				 * 		<li>'*witList*': show list of witnesses in scope parent box;</li>
 				 * 		<li>'*toggleInfoSrc*': open/close information box about source;</li>
 				 * 		<li>'*addVer*': open selector of available witnesses to add a version in text-version view;</li>
@@ -1002,6 +1006,14 @@ angular.module('evtviewer.buttonSwitch')
 							btnType = 'toggler';
 							callback = function () {
 								evtInterface.toggleState('isPinnedAppBoardOpened');
+							};
+							break;
+						case 'toggleApparatus':
+							btnType = 'toggler';
+							callback = function () {
+								//var vm = this;
+								evtInterface.updateState('isApparatusBoxOpen', !evtInterface.getState('isApparatusBoxOpen'));
+								//vm.active = !vm.active;
 							};
 							break;
 						case 'witList':

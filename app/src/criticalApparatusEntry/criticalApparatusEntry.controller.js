@@ -76,6 +76,18 @@ angular.module('evtviewer.criticalApparatusEntry')
         };
         /**
          * @ngdoc method
+         * @name evtviewer.criticalApparatusEntry.controller:CriticalApparatusEntryCtrl#isAppAvailable
+         * @methodOf evtviewer.criticalApparatusEntry.controller:CriticalApparatusEntryCtrl
+         *
+         * @description
+         * Check if tool to toggle apparatus visibility is available.
+         * @returns {boolean} whether the tool is available or not
+         */
+        this.isAppAvailable = function(){
+            return config.toolToggleApparatus;
+        };
+        /**
+         * @ngdoc method
          * @name evtviewer.criticalApparatusEntry.controller:CriticalApparatusEntryCtrl#isPinned
          * @methodOf evtviewer.criticalApparatusEntry.controller:CriticalApparatusEntryCtrl
          *

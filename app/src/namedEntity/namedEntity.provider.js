@@ -161,6 +161,19 @@ angular.module('evtviewer.namedEntity')
                 vm.toggleSubContentClass();
             };
 
+            /**
+             * @ngdoc method
+             * @name evtviewer.namedEntity.controller:NamedEntityCtrl#isAppAvailable
+             * @methodOf evtviewer.namedEntity.controller:NamedEntityCtrl
+             *
+             * @description
+             * Check if tool to toggle apparatus visibility is available.
+             * @returns {boolean} whether the tool is available or not
+             */
+            this.isAppAvailable = function(){
+                return config.toolToggleApparatus;
+            };
+
             //Pin Tool Functions
             /**
              * @ngdoc method
