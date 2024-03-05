@@ -320,6 +320,29 @@
             margin-left:-22.5px;
         }
     }
+
+    // TABLE
+    .table {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        height: 100%;
+        width: 100%;
+        
+        .row {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+            column-gap: 0.5em;
+
+            .cell {
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-basis: 0;
+            }
+        }
+    }
 }
 
 .centered {
