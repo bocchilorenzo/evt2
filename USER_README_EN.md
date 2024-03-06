@@ -106,6 +106,7 @@ If you find this file difficult to read and/or change you can try out the beta [
 #### Generic tools
 
 * `toolPinAppEntries`. Select if you want to activate (`true`) or not (`false`) the PIN tool, which allows the user to “save” apparatus entries or (named) entities in order to reach them more quickly when you need them.
+* `toolToggleApparatus`. Select if you want to activate (`true`) or not (`false`) the view for the apparatus, if it's available, which allows the user to show or hide the apparatus entries.
 * `toolImageTextLinking`. Select if you want to activate (`true`) or not (`false`) the Image-Text Linking tool, which allow the user to connect line by line the facsimile to the transcription. You will need to properly encode the `zone` and their coordinates and have Image-Text among the available view modes. Note that this is still a work-in-progress feature since we are still implementing the EVT 2 image viewer.
 
 #### Named entities

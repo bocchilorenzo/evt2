@@ -328,6 +328,7 @@
         align-items: start;
         height: 100%;
         width: 100%;
+        margin-bottom: 1.5rem;
         
         .row {
             display: flex;
@@ -342,6 +343,14 @@
                 flex-basis: 0;
             }
         }
+    }
+
+    .listwit {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        height: 100%;
+        width: 100%;
     }
 }
 
