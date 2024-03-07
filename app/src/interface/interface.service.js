@@ -85,7 +85,7 @@ angular.module('evtviewer.interface')
 			  home : ''
 		  },
         //ADDED BY CM//
-        isApparatusBoxOpen : false,
+        isApparatusBoxOpen : true,
         currentApparatus   : undefined,
         currentQuote       : undefined,
         currentAnalogue    : undefined,
@@ -343,7 +343,7 @@ angular.module('evtviewer.interface')
                                   quotesInBox = !config.showInlineSources && quotesList.length > 0,
                                   analoguesList = parsedData.getAnalogues()._indexes.encodingStructure || [],
                                   analoguesInBox = !config.showInlineAnalogues && analoguesList.length > 0;
-                              //state.isApparatusBoxOpen = (!config.showInlineCriticalApparatus || quotesInBox || analoguesInBox);
+                              state.isApparatusBoxOpen = (!config.showInlineCriticalApparatus || quotesInBox || analoguesInBox);
 
                               $rootScope.$applyAsync(state.isLoading = false);
 

@@ -154,6 +154,7 @@ angular.module('evtviewer.core')
 
 	toolHeatMap: true,
 	toolPinAppEntries: false,
+	toolToggleApparatus: true,
 	toolImageTextLinking: true,
 
 	viscollButton: false,

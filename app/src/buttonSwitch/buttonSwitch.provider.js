@@ -1011,9 +1011,7 @@ angular.module('evtviewer.buttonSwitch')
 						case 'toggleApparatus':
 							btnType = 'toggler';
 							callback = function () {
-								//var vm = this;
 								evtInterface.updateState('isApparatusBoxOpen', !evtInterface.getState('isApparatusBoxOpen'));
-								//vm.active = !vm.active;
 							};
 							break;
 						case 'witList':

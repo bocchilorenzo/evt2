@@ -1,6 +1,6 @@
 {
   "name": "evtviewer",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "devDependencies": {
     "@babel/core": "^7.23.6",
     "angular": "1.8.3",
