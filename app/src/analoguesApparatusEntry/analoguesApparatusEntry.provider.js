@@ -90,7 +90,7 @@ angular.module('evtviewer.analoguesApparatusEntry')
 				content = evtAnaloguesApparatus.getContent(analogueEntry, scopeWit);
 
 				//Apparatus header
-				header = content.header;
+				header = "";
 
 				//Array of sources objects
 				sources = content.sources;
@@ -99,16 +99,12 @@ angular.module('evtviewer.analoguesApparatusEntry')
 				//Adding information to the srcList
 				for (var i in sources) {
 					srcList._indexes.push(sources[i].id);
+					header += sources[i].text + ' ';
+					delete sources[i].text;
 					srcList[sources[i].id] = sources[i];
 					srcList[sources[i].id].tabs = {
 						_indexes: []
 					};
-					if (srcList[sources[i].id].text !== '') {
-						srcList[sources[i].id].tabs._indexes.push('text');
-						srcList[sources[i].id].tabs.text = {
-							label: 'ANALOGUES.TEXT'
-						};
-					}
 					if (srcList[sources[i].id].bibl !== '') {
 						srcList[sources[i].id].tabs._indexes.push('biblRef');
 						srcList[sources[i].id].tabs.biblRef = {

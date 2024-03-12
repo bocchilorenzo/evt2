@@ -424,10 +424,6 @@ div.div {
 	font-variant: small-caps;
 	font-weight: bold;
 	font-size: 90%;
-
-	&::after {
-		content: ":";
-	}
 }
 
 .stage {
@@ -435,6 +431,7 @@ div.div {
 	font-size: 90%;
 	display: block;
 	text-align: center;
+	margin: 1em 0;
 }
 
 .witnesses-lem,

@@ -103,7 +103,9 @@
 	},
 	"LANGUAGES": {
 		"EN": "Inglese",
-		"IT": "Italiano"
+		"IT": "Italiano",
+		"FR": "Francese",
+		"ES": "Spagnolo"
 	},
 	"LISTS": {
 		"ENTITY_TYPE_": "Nome",

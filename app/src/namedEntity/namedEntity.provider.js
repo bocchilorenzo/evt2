@@ -390,7 +390,7 @@ angular.module('evtviewer.namedEntity')
                     tabs.moreInfo = { label: 'NAMED_ENTITIES.MORE_INFO' };
                 }
 
-                if (entityType !== 'relation') {
+                if (entityType !== 'relation' && evtInterface.getState('currentEdition') !== 'critical') {
                     tabs._indexes.push('occurrences');
                     tabs.occurrences = { label: 'NAMED_ENTITIES.OCCURRENCES' };
                 }
