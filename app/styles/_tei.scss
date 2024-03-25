@@ -91,6 +91,19 @@ div.div {
 	}
 }
 
+.castlist{
+	.head {
+		display: block;
+		font-weight: bold;
+		margin-top: 1.5rem;
+		margin-bottom: 0.5rem;
+	
+		.ng-scope {
+			font-weight: normal;
+		}
+	}
+}
+
 .l {
 	display: inline;
 	background: inherit;
