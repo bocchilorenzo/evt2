@@ -204,10 +204,7 @@ angular.module('evtviewer.dataHandler')
 						newElement.appendChild(parser.parseXMLElement(doc, copiedElement, options));
 					}
 				} else {
-					if (tagName === 'castitem') {
-						newElement = parser.parseLine(doc, element, previousElement, options);
-					}
-					else if (!parsedData.getEncodingDetail('usesLineBreaks') && tagName === 'l') {
+					if (tagName === 'castitem' || (!parsedData.getEncodingDetail('usesLineBreaks') && tagName === 'l')) {
 						newElement = parser.parseLine(doc, element, previousElement, options);
 					} else if (tagName === 'note' && skip.indexOf('<evtNote>') < 0) {
 						newElement = parser.parseNote(element);
