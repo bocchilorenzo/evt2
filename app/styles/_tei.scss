@@ -133,6 +133,7 @@ div.div {
 
 	.lineContent {
 		display: inline-block;
+		width: max-content;
 	}
 
 	&-hasLineN[data-rend='indent'] {
