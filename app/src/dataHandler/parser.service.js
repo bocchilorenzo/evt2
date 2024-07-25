@@ -226,16 +226,38 @@ angular
                   );
                }
 
-               let firstChild = element.querySelector("span");
-               if (firstChild && firstChild.getAttribute("data-n")) {
-                  // code similar to parseLine, because parseLine doesn't work
-                  let lineN = document.createElement("span");
-                  lineN.className = "lineN";
-                  lineN.textContent = firstChild.getAttribute("data-n");
-                  // add line number to the first child at the beginning
-                  firstChild.insertBefore(lineN, firstChild.firstChild);
-                  firstChild.className += " l-hasLineN";
+               const spanChildren = element.querySelectorAll("span");
+
+               /**
+                * This code is a bit hacky, but it works.
+                */
+               for (let i = 0; i < spanChildren.length; i++) {
+                  const spanChild = spanChildren[i];
+                  if (spanChild.getAttribute("data-n")) {
+                     // check if it contains a span with class lineContent
+                     // if it doesn't, add it and move all the children inside it
+                     if (!spanChild.querySelector(".lineContent")) {
+                        const lineContent = document.createElement("span");
+                        lineContent.className = "lineContent";
+                        while (spanChild.firstChild) {
+                           lineContent.appendChild(spanChild.firstChild);
+                        }
+                        /**
+                         * Here we need to also add a nbsp to the spanChild.
+                         * If we don't, the text will be misaligned.
+                         */
+                        spanChild.appendChild(document.createTextNode("\u00A0"));
+                        spanChild.appendChild(lineContent);
+                     }
+                     // code similar to parseLine, because parseLine doesn't work here
+                     const lineN = document.createElement("span");
+                     lineN.className = "lineN";
+                     lineN.textContent = spanChild.getAttribute("data-n");
+                     spanChild.insertBefore(lineN, spanChild.firstChild);
+                     spanChild.className += " l-hasLineN";
+                  }
                }
+               
                /**
                 *  check if one of the children has the class l-hasLineN
                 *  if so, add the class analogue-lineN to the element
@@ -249,7 +271,6 @@ angular
                      lineChild = element.childNodes[i];
                      lineN = lineChild.querySelector(".lineN");
                      lineN.className += " analogue-lineN";
-                     break;
                   }
                }
 
