@@ -482,7 +482,7 @@ angular.module('evtviewer.dataHandler')
                 var additionalAttrFrom = el.getAttribute('from');
                 var additionalAttrTo = el.getAttribute('to');
                 if (attrValue !== null) {
-                    if (!attrValue in whereToPutInfoArray) {
+                    if (!(attrValue in whereToPutInfoArray)) {
                         //diamo la precedenza agli attributi @from & @to
                         if (additionalAttrTo !== null && additionalAttrFrom !== null && additionalAttrTo !== '' && additionalAttrFrom !== '') {
                             whereToPutInfoArray[attrValue] = additionalAttrFrom + '-' + additionalAttrTo;
@@ -682,17 +682,10 @@ angular.module('evtviewer.dataHandler')
                 //chiude autors
                 string += '</span>';
                 if (!isMonograph(newBiblElement)) {
-                    if (getDate(newBiblElement)) {
-                        string += '<span data-style="chicago" class="date">' + getDate(newBiblElement) + '</span>';
-                    }
-
                     if (getTitleAnalytic(newBiblElement)) {
                         string += '<span data-style="chicago" class="titleAnalytic">' + getTitleAnalytic(newBiblElement) + '</span>';
                     }
 
-                    if (getTitleMonogr(newBiblElement)) {
-                        string += '<span data-style="chicago" class="titleMonogr">' + getTitleMonogr(newBiblElement) + '</span>';
-                    }
                     //editore
                     if (getEditor(newBiblElement)) {
                         string += '<span data-style="chicago" class="editors">';
@@ -718,12 +711,32 @@ angular.module('evtviewer.dataHandler')
                         });
                         string += '</span>';
                     }
+                    if (getVolumes(newBiblElement)) {
+                        var vol = getVolumes(newBiblElement);
+                        if (getIssue(newBiblElement)) {
+                            var issue = getIssue(newBiblElement);
+                            string += '<span data-style="chicago" class="vol"> vol. ' + vol + ' (' + issue + ')</span>';
+                        } else {
+                            string += '<span data-style="chicago" class="vol"> vol. ' + vol + '</span>';
+                        }
+                    }
+                    if (getTitleMonogr(newBiblElement)) {
+                        string += '<span data-style="chicago" class="titleMonogr">' + getTitleMonogr(newBiblElement) + '</span>';
+                    }
+                    string += ' (';
                     if (getPubPlace(newBiblElement)) {
                         string += '<span data-style="chicago" class="pubPlace">' + getPubPlace(newBiblElement) + '</span>';
                     }
                     if (getPublisher(newBiblElement)) {
                         string += '<span data-style="chicago" class="publisher">' + getPublisher(newBiblElement) + '</span>';
                     }
+                    if (getDate(newBiblElement)) {
+                        if (string.charAt(string.length - 1) !== '(') {
+                            string += ', ';
+                        }
+                        string += '<span data-style="chicago" class="date">' + getDate(newBiblElement) + '</span>';
+                    }
+                    string += ')';
 
                     if (getPages(newBiblElement)) {
                         string += '<span data-style="chicago" class="pp">' + getPages(newBiblElement) + '</span>';
@@ -736,25 +749,36 @@ angular.module('evtviewer.dataHandler')
                     });/*/
                 } else {
                     //else if(isMonograph(newBiblElement) ){
-                    if (getDate(newBiblElement)) {
-                        string += '<span data-style="chicago" class="date">' + getDate(newBiblElement) + '</span>';
-                    }
                     if (getTitleAnalytic(newBiblElement)) {
                         string += '<span data-style="chicago" data-attr="titolo" class="titleAnalytic">' + getTitleAnalytic(newBiblElement) + '</span>';
-                    }
-                    if (getTitleMonogr(newBiblElement)) {
-                        string += '<span data-style="chicago" data-attr="titolo" class="titleMonogr">' + getTitleMonogr(newBiblElement) + '</span>';
                     }
                     if (getEditionMonogr(newBiblElement)) {
                         string += '<span data-style="chicago" data-attr="titolo" class="edition">' + getEditionMonogr(newBiblElement) + '</span>';
                     }
 
+                    if (getVolumes(newBiblElement)) {
+                        var vol = getVolumes(newBiblElement);
+                        if (getIssue(newBiblElement)) {
+                            var issue = getIssue(newBiblElement);
+                            string += '<span data-style="chicago" class="vol"> vol. ' + vol + ' (' + issue + ')</span>';
+                        } else {
+                            string += '<span data-style="chicago" class="vol"> vol. ' + vol + '</span>';
+                        }
+                    }
+                    if (getTitleMonogr(newBiblElement)) {
+                        string += '<span data-style="chicago" data-attr="titolo" class="titleMonogr">' + getTitleMonogr(newBiblElement) + '</span>';
+                    }
+                    string += ' (';
                     if (getPubPlace(newBiblElement)) {
                         string += '<span data-style="chicago" class="pubPlace">' + getPubPlace(newBiblElement) + '</span>';
                     }
                     if (getPublisher(newBiblElement)) {
                         string += '<span data-style="chicago" class="publisher">' + getPublisher(newBiblElement) + '</span>';
                     }
+                    if (getDate(newBiblElement)) {
+                        string += '<span data-style="chicago" class="date">' + getDate(newBiblElement) + '</span>';
+                    }
+                    string += ')';
                     if (getUrl(newBiblElement)) {
                         string += '<span data-style="chicago" class="url">' + getUrl(newBiblElement) + '</span>';
                     }
