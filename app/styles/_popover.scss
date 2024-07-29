@@ -13,6 +13,9 @@ $popover-shadow-color: #7e7067;
 
 .popover {
     display: inline;
+    font-variant: normal;
+	font-weight: normal;
+	font-size: 100%;
 }
 
 .popover_trigger {

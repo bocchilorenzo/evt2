@@ -53,6 +53,20 @@ span.quote sup.iconbis-evt_quote-right {
   display: none;
 }
 
+span.center span.castlist {
+  display: grid;
+  justify-items: center;
+}
+
+span.center div.castItem {
+  margin-left: 0!important;
+}
+
+span.center span.p, span.center span.head {
+  width: fit-content;
+  max-width: 100%;
+}
+
 .term {
    background-color: coral;
 }
