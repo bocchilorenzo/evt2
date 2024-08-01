@@ -55,7 +55,9 @@ span.quote sup.iconbis-evt_quote-right {
 
 span.center span.castlist {
   display: grid;
-  justify-items: center;
+  margin: 0 auto;
+  width: fit-content;
+  max-width: 100%;
 }
 
 span.center div.castItem {
@@ -67,6 +69,10 @@ span.center span.p, span.center span.head {
   max-width: 100%;
 }
 
+div[data-n] > .head {
+  margin: 2em 0 0 0;
+}
+
 .term {
-   background-color: coral;
+  background-color: coral;
 }
